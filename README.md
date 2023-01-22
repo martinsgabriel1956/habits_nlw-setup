@@ -6,6 +6,14 @@
   Application for creating, monitoring and completing your habits.
 </p>
 
+<br />
+
+## :globe_with_meridians: Web
+
+<img src="./.github/banner_web.png" alt="Logo" />
+
+<br />
+
 ## :rocket: Tecnologias utilizadas:
 
 - [ReactJS](https://reactjs.org)

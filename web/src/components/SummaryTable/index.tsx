@@ -15,30 +15,32 @@ export const SummaryTable = () => {
       className="flex w-full "
     >
       <div
-        className="grid grid-flow-row gap-3  grid-rows-7"
+        className="grid grid-flow-row gap-3 grid-rows-7"
       >
         {weekDays.map((weekDay, index) => (
           <div
             key={`${weekDay}-${index}`}
-            className="flex items-center justify-center w-10 h-10 text-xl font-bold  text-zinc-400"
+            className="flex items-center justify-center w-10 h-10 text-xl font-bold text-zinc-400"
           >
             {weekDay}
           </div>
         ))}
       </div>
       <div
-        className="grid grid-flow-col gap-3  grid-rows-7"
+        className="grid grid-flow-col gap-3 grid-rows-7"
       >
         {summaryDates.map(date => (
           <HabitDay
             key={date.toString()}
+            amount={5}
+            completed={Math.round(Math.random() * 5)}
           />
         ))}
 
         {amountOfDaysToFill > 0 && amountOfDaysToFillArray.map((_, index) => (
           <div
             key={index}
-            className="w-10 h-10 border-2 rounded-lg cursor-not-allowed  bg-zinc-900 border-zinc-800 opacity-40"
+            className="w-10 h-10 border-2 rounded-lg cursor-not-allowed bg-zinc-900 border-zinc-800 opacity-40"
           >
 
           </div>
