@@ -1,12 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 
+import { SummaryData } from './types';
+import { api } from '../../lib/axios';
 import { weekDays } from "../../utils/weekdays";
 import { generateDatesFromYearBeginning } from "../../utils/generate-dates-from-year-beginning";
-
 import { HabitDay } from "../HabitDay";
-import { api } from '../../lib/axios';
-import { SummaryData } from './types';
 
 const summaryDates = generateDatesFromYearBeginning();
 const miniumSummaryDatesSize = 18 * 7;
@@ -14,12 +13,10 @@ const amountOfDaysToFill = miniumSummaryDatesSize - summaryDates.length;
 
 export const SummaryTable = () => {
   const amountOfDaysToFillArray = Array.from({ length: amountOfDaysToFill });
-
   const { data: summary } = useQuery<SummaryData>({
     queryKey: ["summary"], queryFn: async () => {
       const response = await api.get("summary");
       const summary = response.data;
-
       return summary;
     },
     staleTime: 10000 * 60 // 10 minutes
@@ -44,7 +41,7 @@ export const SummaryTable = () => {
       <div
         className="grid grid-flow-col gap-3 grid-rows-7"
       >
-        {summaryDates.map(date => {
+        {summary?.length! > 0 && summaryDates.map(date => {
           const dayInSummary = summary?.find(day => dayjs(date).isSame(day.date, "day"));
 
           return (
@@ -52,7 +49,7 @@ export const SummaryTable = () => {
               key={date.toString()}
               date={date}
               amount={dayInSummary?.amount}
-              completed={dayInSummary?.completed}
+              defaultCompleted={dayInSummary?.completed}
             />
           )
         })}

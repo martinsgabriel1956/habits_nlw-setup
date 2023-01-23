@@ -1,8 +1,8 @@
 import * as Checkbox from '@radix-ui/react-checkbox';
 import { Check } from 'phosphor-react';
-import { CheckboxProps } from './types';
+import { CheckBoxProps } from './types';
 
-export const CheckBox: React.FC<CheckboxProps> = ({ text }) => {
+export const CheckBox: React.FC<CheckBoxProps> = ({ text }) => {
   return (
     <Checkbox.Root
       className='flex items-center gap-3 group'

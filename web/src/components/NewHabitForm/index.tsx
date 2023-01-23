@@ -52,7 +52,7 @@ export const NewHabitForm = () => {
         placeholder="ex.: Exercícios, dormir bem, etc..."
         autoFocus
         value={title}
-        className="p-4 mt-3 text-white rounded-lg bg-zinc-800 placeholder:text-zinc-400"
+        className="p-4 mt-3 text-white rounded-lg bg-zinc-800 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-violet-700 focus:ring-offset-2 focus:ring-offset-zinc-900"
         onChange={(event) => setTitle(event.target.value)}
       />
 
@@ -63,10 +63,12 @@ export const NewHabitForm = () => {
           <Checkbox.Root
             key={weekDay}
             checked={weekDays.includes(index)}
-            className='flex items-center gap-3 group'
+            className='flex items-center gap-3 group focus:outline-none'
             onCheckedChange={() => handleToggleWeekDay(index)}
           >
-            <div className="flex items-center justify-center w-8 h-8 border-2 rounded-lg bg-zinc-900 border-zinc-800 group-data-[state=checked]:bg-green-500 group-data-[state=checked]:border-green-500">
+            <div
+              className="flex items-center justify-center w-8 h-8 border-2 rounded-lg bg-zinc-900 border-zinc-800 group-data-[state=checked]:bg-green-500 group-data-[state=checked]:border-green-500 transition-colors group-focus:ring-2 group-focus:ring-violet-700 group-focus:ring-offset-2 group-focus:ring-offset-zinc-900"
+            >
               <Checkbox.Indicator>
                 <Check size={20} className="text-white" />
               </Checkbox.Indicator>
@@ -80,7 +82,10 @@ export const NewHabitForm = () => {
         ))}
       </div>
 
-      <button type="submit" className="flex items-center justify-center gap-3 p-4 mt-6 font-semibold bg-green-600 rounded-lg hover:bg-green-500">
+      <button
+        type="submit"
+        className="flex items-center justify-center gap-3 p-4 mt-6 font-semibold transition-colors bg-green-600 rounded-lg hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 focus:ring-offset-zinc-900"
+      >
         <Check size={20} weight="bold" />
         Confirmar
       </button>

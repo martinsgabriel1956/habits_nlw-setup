@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { Alert, ScrollView, Text, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import dayjs from "dayjs";
 import { api } from "../../lib/axios";
 import { DAY_SIZE, weekDays } from "../../utils";
@@ -30,6 +30,7 @@ export const Home: React.FC = () => {
       setLoading(false);
       const response = await api.get("summary");
       const data = response.data;
+
       setSummary(data);
     } catch (error) {
       Alert.alert("Ops", "Não foi possível carregar o sumário de hábitos.");
@@ -39,9 +40,9 @@ export const Home: React.FC = () => {
     }
   }
 
-  useEffect(() => {
+  useFocusEffect(useCallback(() => {
     fetchData();
-  }, [])
+  }, []));
 
   if (loading) {
     return (
@@ -79,8 +80,6 @@ export const Home: React.FC = () => {
           >
             {datesFromYearStart.map(date => {
               const dayWithHabits = summary?.find(day => dayjs(date).isSame(day.date, "day"));
-
-              console.log(dayWithHabits);
 
               return (
                 <HabitDay
